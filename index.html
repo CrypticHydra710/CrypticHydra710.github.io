@@ -4,374 +4,262 @@
 <head>
   <meta charset="utf-8">
 
-  <!-- Gjør nettsiden responsiv på mobil, nettbrett og PC -->
+  <!-- Gjør nettsiden responsiv på mobil -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Teksten som vises i fanen i nettleseren -->
+  <!-- Navnet som vises i nettleserfanen -->
   <title>67 // OUUU SHIII</title>
 
 
   <style>
 
     /* =====================================================
-       67 // FARGER
-       Her lager vi fargene vi bruker gjennom hele siden.
+       HACKER // FARGER
+       Vi bruker hovedsakelig svart og terminalgrønt.
        ===================================================== */
 
     :root {
-      --black: #050509;
-      --dark-purple: #100018;
-
-      /* Typiske cyberpunk-farger */
-      --cyan: #00f7ff;
-      --pink: #ff00d4;
-      --yellow: #fff200;
-      --green: #00ff66;
-
-      /* 67-fargen */
-      --sixty-seven: #ff0055;
+      --background: #050505;
+      --panel: #0a0a0a;
+      --green: #00ff41;
+      --dark-green: #008f11;
+      --gray: #888;
+      --white: #d0d0d0;
     }
 
 
     /* =====================================================
-       67 // GRUNNINNSTILLINGER
+       GRUNNINNSTILLINGER
        ===================================================== */
 
     * {
-      /* Gjør at padding og border regnes med i elementets størrelse */
+      /* Gjør størrelsesberegning enklere */
       box-sizing: border-box;
     }
 
 
     body {
-      /* Fjerner standard margin fra nettleseren */
+      /* Fjerner standard margin */
       margin: 0;
 
-      /* Avstand rundt innholdet */
+      /* Avstand rundt nettsiden */
       padding: 30px 15px;
 
-      /* Minste høyde er hele skjermen */
+      /* Gjør siden minst like høy som skjermen */
       min-height: 100vh;
 
-      /* Cyberpunk-bakgrunn */
-      background:
-        radial-gradient(
-          circle at 20% 20%,
-          #3d003d,
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 80% 80%,
-          #001e3d,
-          transparent 30%
-        ),
-        var(--black);
+      /* Klassisk terminal-font */
+      font-family: "Courier New", Courier, monospace;
 
-      /* Font */
-      font-family: "Courier New", monospace;
+      /* Svart terminalbakgrunn */
+      background: var(--background);
 
-      /* Hvit tekst */
-      color: white;
+      /* Grønn terminaltekst */
+      color: var(--green);
 
-      /* Hindrer horisontal scrolling */
-      overflow-x: hidden;
+      /* Litt mellomrom mellom bokstavene */
+      letter-spacing: 0.5px;
     }
 
 
     /* =====================================================
-       67 // DIGITALT RUTENETT
-       Lager linjer i bakgrunnen som minner om et
-       futuristisk datasystem.
-       ===================================================== */
-
-    body::before {
-      content: "";
-
-      /* Gjør laget like stort som hele skjermen */
-      position: fixed;
-      inset: 0;
-
-      /* Gjør at laget ikke blokkerer knapper/lenker */
-      pointer-events: none;
-
-      /* Lager horisontale og vertikale linjer */
-      background:
-        linear-gradient(
-          rgba(255, 0, 85, 0.08) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(0, 247, 255, 0.08) 1px,
-          transparent 1px
-        );
-
-      /* Størrelsen på rutene */
-      background-size: 40px 40px;
-
-      /* Ligger bak resten av siden */
-      z-index: -2;
-    }
-
-
-    /* =====================================================
-       67 // SCANLINES
-       Lager de horisontale TV-/CRT-linjene.
-       ===================================================== */
-
-    body::after {
-      content: "";
-
-      position: fixed;
-      inset: 0;
-
-      /* Gjør laget usynlig for musen */
-      pointer-events: none;
-
-      /* Små horisontale linjer */
-      background: repeating-linear-gradient(
-        0deg,
-        rgba(255,255,255,0.025),
-        rgba(255,255,255,0.025) 1px,
-        transparent 1px,
-        transparent 4px
-      );
-
-      /* Ligger helt øverst */
-      z-index: 100;
-    }
-
-
-    /* =====================================================
-       67 // HOVEDCONTAINER
-       Begrenset bredde gjør siden mer oversiktlig på PC.
-       ===================================================== */
-
-    .container {
-      width: min(900px, 100%);
-      margin: auto;
-    }
-
-
-    /* =====================================================
-       67 // TERMINAL-VINDU
-       Dette er selve "datasystemet" rundt innholdet.
+       TERMINAL CONTAINER
+       Dette fungerer som hovedvinduet på nettsiden.
        ===================================================== */
 
     .terminal {
-      position: relative;
+      width: min(850px, 100%);
 
-      padding: 35px;
+      /* Sentrerer terminalen */
+      margin: auto;
 
-      /* Gjennomsiktig mørk bakgrunn */
-      background: rgba(8, 4, 18, 0.9);
+      /* Mørkere panel */
+      background: var(--panel);
 
-      /* Neonrosa kant */
-      border: 2px solid var(--sixty-seven);
+      /* Enkel terminalkant */
+      border: 1px solid #1b1b1b;
 
-      /* Rosa glow */
-      box-shadow:
-        0 0 10px var(--sixty-seven),
-        0 0 35px rgba(255, 0, 85, 0.3),
-        inset 0 0 30px rgba(255, 0, 85, 0.05);
+      /* Litt skygge */
+      box-shadow: 0 0 30px rgba(0, 255, 65, 0.05);
+
+      /* Hindrer at innhold går utenfor */
+      overflow: hidden;
     }
 
 
     /* =====================================================
-       67 // TOPPTEKST
-       Liten tekst øverst på terminalen.
+       TERMINAL TOPPLINJE
+       Ser ut som toppen av et gammelt terminalvindu.
        ===================================================== */
 
-    .top-bar {
-      display: flex;
+    .terminal-header {
+      padding: 10px 15px;
 
-      /* Plasserer tekst på hver sin side */
-      justify-content: space-between;
+      background: #111;
 
-      align-items: center;
+      border-bottom: 1px solid #222;
 
-      margin-bottom: 30px;
+      color: #777;
 
-      color: var(--cyan);
-
-      font-size: 0.75rem;
-
-      letter-spacing: 2px;
+      font-size: 0.8rem;
     }
 
 
-    /* 67-logoen */
-    .logo {
-      color: var(--yellow);
+    /* De tre små "knappene" øverst */
+    .dot {
+      display: inline-block;
 
-      font-weight: bold;
+      width: 8px;
+      height: 8px;
 
-      /* Glow rundt 67 */
-      text-shadow:
-        0 0 5px var(--yellow),
-        0 0 15px var(--yellow);
+      margin-right: 6px;
+
+      border-radius: 50%;
+
+      background: #333;
     }
 
 
     /* =====================================================
-       67 // HOVEDOVERSKRIFT
+       SELVE TERMINALINNHOLDET
+       ===================================================== */
+
+    .content {
+      padding: 30px;
+    }
+
+
+    /* =====================================================
+       TERMINAL PROMPT
+       Dette gir følelsen av at brukeren skriver kommandoer.
+       ===================================================== */
+
+    .prompt {
+      color: var(--green);
+
+      margin-bottom: 8px;
+    }
+
+
+    /* Gjør $-tegnet litt tydeligere */
+    .prompt span {
+      color: var(--white);
+    }
+
+
+    /* =====================================================
+       HOVEDOVERSKRIFT
        ===================================================== */
 
     h1 {
-      margin: 0;
+      margin: 25px 0;
 
-      /* Stor tekst */
-      font-size: clamp(3rem, 10vw, 7rem);
-
-      line-height: 0.85;
-
-      /* Cyberpunk-farger */
-      color: white;
-
-      /* Flere skygger lager glitch/neon-effekt */
-      text-shadow:
-        4px 4px 0 var(--pink),
-        -4px -4px 0 var(--cyan),
-        0 0 25px var(--cyan);
-
-      /* Kjører glitch-animasjonen */
-      animation: glitch 3s infinite;
-    }
-
-
-    /* "67" under navnet */
-    .sixty-seven {
-      display: block;
-
-      margin-top: 25px;
-
-      color: var(--sixty-seven);
-
-      font-size: 0.45em;
-
-      letter-spacing: 15px;
-
-      /* Stor rød/rosa glow */
-      text-shadow:
-        0 0 5px var(--sixty-seven),
-        0 0 15px var(--sixty-seven),
-        0 0 40px var(--sixty-seven);
-    }
-
-
-    /* =====================================================
-       67 // INTRODUKSJON
-       ===================================================== */
-
-    .intro {
-      margin-top: 40px;
-
-      padding: 20px;
-
-      /* Rosa linje på venstre side */
-      border-left: 4px solid var(--pink);
-
-      /* Svak rosa bakgrunn */
-      background: rgba(255, 0, 212, 0.04);
-    }
-
-
-    p {
-      color: #cfd7ff;
-
-      line-height: 1.8;
-    }
-
-
-    /* =====================================================
-       67 // STATUS
-       ===================================================== */
-
-    .status {
       color: var(--green);
 
-      font-size: 0.8rem;
+      font-size: clamp(2rem, 7vw, 4.5rem);
 
-      letter-spacing: 3px;
+      line-height: 1;
 
-      text-shadow: 0 0 8px var(--green);
+      /* Terminalaktig glow */
+      text-shadow: 0 0 8px rgba(0, 255, 65, 0.35);
     }
 
 
-    /* Blinkende "_" */
+    /* 67 blir en del av terminalidentiteten */
+    .logo-67 {
+      color: var(--white);
+
+      font-size: 0.4em;
+
+      letter-spacing: 8px;
+    }
+
+
+    /* =====================================================
+       TEKST
+       ===================================================== */
+
+    p {
+      color: var(--white);
+
+      line-height: 1.7;
+    }
+
+
+    /* Grønn terminaltekst */
+    .green {
+      color: var(--green);
+    }
+
+
+    /* Grå tekst brukes til mindre viktig informasjon */
+    .muted {
+      color: var(--gray);
+    }
+
+
+    /* =====================================================
+       BLINKENDE CURSOR
+       Gir følelsen av en aktiv terminal.
+       ===================================================== */
+
     .cursor {
       animation: blink 1s steps(2) infinite;
     }
 
 
+    @keyframes blink {
+
+      50% {
+        opacity: 0;
+      }
+
+    }
+
+
     /* =====================================================
-       67 // OVERSKRIFTER
+       SEKSJONSTITLER
        ===================================================== */
 
     h2 {
-      margin-top: 50px;
+      margin-top: 45px;
 
-      color: var(--cyan);
+      color: var(--green);
 
-      letter-spacing: 5px;
+      font-size: 1rem;
 
       text-transform: uppercase;
 
-      text-shadow:
-        0 0 5px var(--cyan),
-        0 0 15px var(--cyan);
+      letter-spacing: 2px;
     }
 
 
-    /* Setter "67 //" foran hver overskrift */
+    /* Kommandoen foran hver seksjon */
     h2::before {
-      content: "67 // ";
+      content: "$ ";
 
-      color: var(--pink);
+      color: var(--white);
     }
 
 
     /* =====================================================
-       67 // PROSJEKTER
+       PROSJEKTER
        ===================================================== */
 
     ul {
-      /* Fjerner standard punktliste */
       list-style: none;
 
       padding: 0;
 
-      display: grid;
-
-      gap: 15px;
+      margin: 20px 0;
     }
 
 
+    /* Hvert prosjekt ser ut som en terminal-linje */
     li {
-      padding: 20px;
+      padding: 12px 0;
 
-      /* Mørkt cyberpunk-panel */
-      background: rgba(0, 0, 0, 0.5);
-
-      /* Cyan kant */
-      border: 1px solid var(--cyan);
-
-      /* Litt glow */
-      box-shadow:
-        0 0 8px rgba(0, 247, 255, 0.2);
-
-      transition: 0.25s;
-    }
-
-
-    /* Når musen beveger seg over et prosjekt */
-    li:hover {
-      transform: translateX(10px);
-
-      border-color: var(--yellow);
-
-      box-shadow:
-        0 0 20px rgba(255, 242, 0, 0.5);
+      border-bottom: 1px dashed #222;
     }
 
 
@@ -379,153 +267,121 @@
     li::before {
       content: "[67] ";
 
-      color: var(--yellow);
-
-      font-weight: bold;
-
-      text-shadow: 0 0 8px var(--yellow);
+      color: var(--dark-green);
     }
 
 
     /* =====================================================
-       67 // LENKER
+       LENKER
        ===================================================== */
 
     a {
-      color: var(--cyan);
-
-      font-weight: bold;
+      color: var(--green);
 
       text-decoration: none;
-
-      border-bottom: 1px solid var(--cyan);
     }
 
 
-    /* Effekt når man holder musen over en lenke */
+    /* Når brukeren holder musen over lenken */
     a:hover {
-      color: var(--pink);
+      text-decoration: underline;
 
-      border-color: var(--pink);
-
-      text-shadow: 0 0 10px var(--pink);
+      text-shadow: 0 0 8px var(--green);
     }
 
 
     /* =====================================================
-       67 // KONTAKT
+       KONTAKT
        ===================================================== */
 
     .contact {
-      padding: 25px;
-
       margin-top: 20px;
 
-      border: 1px dashed var(--green);
+      padding: 18px;
 
-      background: rgba(0, 255, 102, 0.03);
+      background: #080808;
+
+      border-left: 2px solid var(--green);
     }
 
 
-    /* E-postadresse som terminaltekst */
+    /* E-postadressen */
     code {
-      display: inline-block;
-
-      padding: 12px 18px;
-
       color: var(--green);
 
-      background: #020505;
-
-      border: 1px solid var(--green);
-
-      box-shadow:
-        0 0 15px rgba(0, 255, 102, 0.3);
-
-      font-family: monospace;
+      font-family: inherit;
     }
 
 
     /* =====================================================
-       67 // FOOTER
+       ASCII-HEADER
+       Dette gir litt ekstra hacker/terminalfølelse.
+       ===================================================== */
+
+    .ascii {
+      color: var(--dark-green);
+
+      font-size: clamp(0.5rem, 2vw, 0.9rem);
+
+      line-height: 1.2;
+
+      margin-bottom: 25px;
+
+      white-space: pre;
+    }
+
+
+    /* =====================================================
+       SYSTEM STATUS
+       ===================================================== */
+
+    .status {
+      margin-top: 35px;
+
+      padding-top: 20px;
+
+      border-top: 1px solid #222;
+
+      color: var(--dark-green);
+
+      font-size: 0.75rem;
+    }
+
+
+    /* =====================================================
+       FOOTER
        ===================================================== */
 
     footer {
       margin-top: 40px;
 
+      color: #444;
+
+      font-size: 0.7rem;
+
       text-align: center;
-
-      color: #555;
-
-      font-size: 0.65rem;
-
-      letter-spacing: 4px;
     }
 
 
     /* =====================================================
-       67 // GLITCH-ANIMASJON
-       Flytter overskriften litt frem og tilbake.
-       ===================================================== */
-
-    @keyframes glitch {
-
-      0%, 90%, 100% {
-        transform: translate(0);
-      }
-
-      92% {
-        transform: translate(-4px, 2px);
-      }
-
-      94% {
-        transform: translate(4px, -2px);
-      }
-
-      96% {
-        transform: translate(-2px, 0);
-      }
-    }
-
-
-    /* =====================================================
-       67 // BLINKING CURSOR
-       ===================================================== */
-
-    @keyframes blink {
-
-      50% {
-        opacity: 0;
-      }
-    }
-
-
-    /* =====================================================
-       67 // MOBIL
-       Gjør terminalen mindre på små skjermer.
+       MOBIL
+       Gjør padding mindre på små skjermer.
        ===================================================== */
 
     @media (max-width: 600px) {
 
       body {
-        padding: 15px 8px;
+        padding: 10px;
       }
 
-      .terminal {
-        padding: 25px 18px;
+      .content {
+        padding: 20px;
       }
 
-      .top-bar {
-        font-size: 0.6rem;
+      .ascii {
+        font-size: 0.45rem;
       }
 
-      h1 {
-        font-size: 3.5rem;
-      }
-
-      .sixty-seven {
-        letter-spacing: 8px;
-      }
     }
 
   </style>
@@ -535,109 +391,104 @@
 <body>
 
   <!-- =====================================================
-       67 // SELVE NETTSIDEN
-       Alt som brukeren faktisk ser ligger her.
+       HOVEDTERMINAL
        ===================================================== -->
 
-  <main class="container">
+  <main class="terminal">
 
-    <section class="terminal">
 
-      <!-- Toppmeny/status -->
-      <div class="top-bar">
+    <!-- Terminalens topplinje -->
+    <div class="terminal-header">
 
-        <span class="logo">
-          67.exe
-        </span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
 
-        <span class="status">
-          ● SYSTEM ONLINE
-        </span>
+      &nbsp; terminal — 67
 
+    </div>
+
+
+    <!-- Alt hovedinnhold -->
+    <div class="content">
+
+
+      <!-- ASCII-logo -->
+      <div class="ascii">
+  ██████╗  ███████╗
+  ██╔════╝  ╚════██║
+  ██║  ███╗    ██╔╝
+  ██║   ██║   ██╔╝
+  ╚██████╔╝   ██║
+   ╚═════╝    ╚═╝
       </div>
 
 
-      <!-- =================================================
-           HOVEDOVERSKRIFT
-           ================================================= -->
+      <!-- Første terminalkommando -->
+      <div class="prompt">
+        <span>guest@67:~$</span> whoami
+      </div>
 
+
+      <!-- Navnet -->
       <h1>
+        OUUU SHIII
 
-        OUUU
-        SHIII
-
-        <!-- Stor 67-logo -->
-        <span class="sixty-seven">
-          67 // 67 // 67
+        <span class="logo-67">
+          // 67
         </span>
-
       </h1>
 
 
       <!-- Intro -->
-      <div class="intro">
-
-        <p class="status">
-          &gt; CONNECTION_ESTABLISHED<span class="cursor">_</span>
-        </p>
-
-        <p>
-          Hei, jeg heter <strong>OUUU SHIII</strong>.
-          Du har nettopp koblet deg til min digitale
-          verden.
-        </p>
-
-        <p>
-          Dette er min første nettside publisert med
-          <strong>GitHub Pages</strong>.
-        </p>
-
-        <!-- Ekstra 67-melding -->
-        <p style="color:#ff0055;">
-          [67] SIGNAL DETECTED // [67] SIGNAL DETECTED
-        </p>
-
+      <div class="prompt">
+        <span>guest@67:~$</span> cat about.txt
       </div>
+
+      <p>
+        Hei, jeg heter <strong>OUUU SHIII</strong>.
+      </p>
+
+      <p>
+        Dette er min første nettside publisert med
+        <strong>GitHub Pages</strong>.
+      </p>
+
+      <p class="muted">
+        // user detected<br>
+        // connection established<br>
+        // welcome to the 67 network
+      </p>
 
 
       <!-- =================================================
            PROSJEKTER
            ================================================= -->
 
-      <h2>Prosjekter</h2>
+      <h2>projects</h2>
+
+      <div class="prompt">
+        <span>guest@67:~$</span> ls ./projects
+      </div>
 
       <ul>
 
         <li>
-          <strong>PROSJEKT_01</strong>
-
+          <strong>project_01</strong>
           —
-          
-          <a href="#">
-            ÅPNE PROSJEKT
-          </a>
+          <a href="#">[open]</a>
         </li>
 
-
         <li>
-          <strong>PROSJEKT_02</strong>
-
+          <strong>project_02</strong>
           —
-
-          <a href="#">
-            ÅPNE PROSJEKT
-          </a>
+          <a href="#">[open]</a>
         </li>
 
-
         <li>
-          <strong>PROJECT_67</strong>
-
+          <strong>project_67</strong>
           —
-
-          <a href="#">
-            ENTER 67
-          </a>
+          <a href="#">[open]</a>
         </li>
 
       </ul>
@@ -647,40 +498,48 @@
            KONTAKT
            ================================================= -->
 
-      <h2>Kontakt</h2>
+      <h2>contact</h2>
+
+      <div class="prompt">
+        <span>guest@67:~$</span> ./send_message
+      </div>
 
       <div class="contact">
 
         <p>
-          &gt; SEND DIGITAL TRANSMISSION:
+          Contact address:
         </p>
 
         <code>
           epost@eksempel.no
         </code>
 
-        <p style="color:#fff200;">
-          STATUS: 67% ONLINE
-        </p>
-
       </div>
 
 
       <!-- =================================================
-           FOOTER
+           STATUS
            ================================================= -->
 
+      <div class="status">
+
+        SYSTEM STATUS: ONLINE<br>
+        USER: OUUU_SHIII<br>
+        NETWORK: 67<br>
+        ACCESS LEVEL: PUBLIC<br>
+        CONNECTION: SECURE<span class="cursor">_</span>
+
+      </div>
+
+
+      <!-- Footer -->
       <footer>
 
-        // 67 // 67 // 67 //
-        <br>
-        OUUU SHIII DIGITAL NETWORK
-        <br>
-        END OF TRANSMISSION
+        67 // OUUU SHIII // END OF SESSION
 
       </footer>
 
-    </section>
+    </div>
 
   </main>
 
