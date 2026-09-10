@@ -1,15 +1,326 @@
 <!doctype html>
 <html lang="no">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Min portfolio</title>
-<style>body{font-family:system-ui,Segoe UI,Arial;margin:40px;max-width:720px}h1{font-size:2rem}a{color:#0000FF}code{background:#29bdc1;padding:2px 6px;border-radius:6px}</style>
-<h1>Hei, jeg heter <em>Ouuu shiii</em> 👋</h1>
-<p>Dette er min første nettside publisert med <strong>GitHub Pages</strong>.</p>
-<h2>Prosjekter</h2>
-<ul>
-  <li>Prosjekt 1 – <a href="#">lenke</a></li>
-  <li>Prosjekt 2 – <a href="#">lenke</a></li>
-</ul>
-<p>Kontakt meg: <code>epost@eksempel.no</code></p>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>OUUU SHIII // 67</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap');
+
+    :root {
+      --cyan: #00f6ff;
+      --pink: #ff00c8;
+      --yellow: #f5ff00;
+      --green: #00ff85;
+      --bg: #05000d;
+      --panel: rgba(10, 5, 25, 0.82);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 40px 20px;
+      background:
+        radial-gradient(circle at 20% 20%, #24104d 0, transparent 30%),
+        radial-gradient(circle at 80% 80%, #3b003d 0, transparent 30%),
+        var(--bg);
+      color: #fff;
+      font-family: 'Orbitron', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Cyberpunk grid */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(0,246,255,.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,246,255,.07) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: linear-gradient(to bottom, black, transparent);
+      z-index: -1;
+    }
+
+    /* Scanlines */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(255,255,255,.025) 0px,
+        rgba(255,255,255,.025) 1px,
+        transparent 1px,
+        transparent 4px
+      );
+      z-index: 20;
+    }
+
+    .container {
+      width: min(900px, 100%);
+      margin: auto;
+    }
+
+    .terminal {
+      border: 1px solid var(--cyan);
+      background: var(--panel);
+      padding: 35px;
+      box-shadow:
+        0 0 15px var(--cyan),
+        inset 0 0 30px rgba(0,246,255,.05);
+      position: relative;
+      clip-path: polygon(
+        0 0,
+        calc(100% - 25px) 0,
+        100% 25px,
+        100% 100%,
+        25px 100%,
+        0 calc(100% - 25px)
+      );
+    }
+
+    .terminal::before {
+      content: "SYSTEM // ONLINE // 67";
+      position: absolute;
+      top: -12px;
+      left: 25px;
+      padding: 3px 12px;
+      color: var(--bg);
+      background: var(--cyan);
+      font-size: .65rem;
+      font-weight: 800;
+      box-shadow: 0 0 12px var(--cyan);
+    }
+
+    .status {
+      color: var(--green);
+      font-size: .75rem;
+      letter-spacing: 3px;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 5.5rem);
+      line-height: .9;
+      margin: 0 0 25px;
+      color: #fff;
+      text-shadow:
+        3px 3px 0 var(--pink),
+        -3px -3px 0 var(--cyan),
+        0 0 30px var(--cyan);
+      animation: glitch 3s infinite;
+    }
+
+    h1 em {
+      display: block;
+      color: var(--yellow);
+      font-style: normal;
+      font-size: .55em;
+      margin-top: 15px;
+      text-shadow:
+        0 0 5px var(--yellow),
+        0 0 20px var(--yellow);
+    }
+
+    p {
+      color: #c7d5ff;
+      line-height: 1.8;
+    }
+
+    .intro {
+      border-left: 3px solid var(--pink);
+      padding-left: 18px;
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      color: var(--cyan);
+      font-size: 1.1rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-top: 45px;
+      text-shadow: 0 0 10px var(--cyan);
+    }
+
+    h2::before {
+      content: ">> ";
+      color: var(--pink);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      gap: 15px;
+    }
+
+    li {
+      background: rgba(255, 0, 200, .06);
+      border: 1px solid rgba(255, 0, 200, .5);
+      padding: 20px;
+      transition: .25s;
+      position: relative;
+    }
+
+    li:hover {
+      transform: translateX(8px);
+      border-color: var(--cyan);
+      box-shadow:
+        0 0 15px rgba(0,246,255,.5),
+        inset 0 0 15px rgba(0,246,255,.08);
+    }
+
+    li::before {
+      content: "67";
+      color: var(--yellow);
+      margin-right: 15px;
+      font-weight: 800;
+      text-shadow: 0 0 8px var(--yellow);
+    }
+
+    a {
+      color: var(--cyan);
+      text-decoration: none;
+      font-weight: 800;
+      border-bottom: 1px solid var(--cyan);
+    }
+
+    a:hover {
+      color: var(--pink);
+      border-color: var(--pink);
+      text-shadow: 0 0 10px var(--pink);
+    }
+
+    code {
+      display: inline-block;
+      padding: 12px 18px;
+      color: var(--green);
+      background: #020508;
+      border: 1px solid var(--green);
+      border-radius: 0;
+      box-shadow: 0 0 12px rgba(0,255,133,.3);
+      font-family: monospace;
+    }
+
+    .contact {
+      margin-top: 35px;
+      padding-top: 25px;
+      border-top: 1px dashed rgba(0,246,255,.5);
+    }
+
+    .footer {
+      margin-top: 30px;
+      text-align: center;
+      color: #667;
+      font-size: .65rem;
+      letter-spacing: 3px;
+    }
+
+    .blink {
+      animation: blink 1s steps(2, start) infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    @keyframes glitch {
+      0%, 90%, 100% {
+        transform: translate(0);
+      }
+      92% {
+        transform: translate(-3px, 2px);
+      }
+      94% {
+        transform: translate(3px, -2px);
+      }
+      96% {
+        transform: translate(-2px, 0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 20px 10px;
+      }
+
+      .terminal {
+        padding: 25px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+    <section class="terminal">
+
+      <div class="status">
+        ● CONNECTION ESTABLISHED <span class="blink">_</span>
+      </div>
+
+      <h1>
+        HEI,
+        <em>OUUU SHIII // 67</em>
+      </h1>
+
+      <div class="intro">
+        <p>
+          Velkommen til min digitale sektor.
+          Dette er min første nettside publisert gjennom
+          <strong>GitHub Pages</strong>.
+        </p>
+
+        <p>
+          <span style="color:#ff00c8">[STATUS]</span>
+          SYSTEM ONLINE — NIGHT CITY PROTOCOL ACTIVE
+        </p>
+      </div>
+
+      <h2>Prosjekter</h2>
+
+      <ul>
+        <li>
+          PROSJEKT_01 —
+          <a href="#">ÅPNE DATA</a>
+        </li>
+
+        <li>
+          PROSJEKT_02 —
+          <a href="#">ÅPNE DATA</a>
+        </li>
+      </ul>
+
+      <h2>Kontakt</h2>
+
+      <div class="contact">
+        <p>
+          SEND TRANSMISSION →
+        </p>
+
+        <code>epost@eksempel.no</code>
+      </div>
+
+      <div class="footer">
+        // 67 // CYBERNETIC PORTFOLIO // END OF TRANSMISSION //
+      </div>
+
+    </section>
+  </main>
+
+</body>
 </html>
