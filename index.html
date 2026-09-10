@@ -1,326 +1,689 @@
 <!doctype html>
 <html lang="no">
+
 <head>
   <meta charset="utf-8">
+
+  <!-- Gjør nettsiden responsiv på mobil, nettbrett og PC -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>OUUU SHIII // 67</title>
+  <!-- Teksten som vises i fanen i nettleseren -->
+  <title>67 // OUUU SHIII</title>
+
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap');
+
+    /* =====================================================
+       67 // FARGER
+       Her lager vi fargene vi bruker gjennom hele siden.
+       ===================================================== */
 
     :root {
-      --cyan: #00f6ff;
-      --pink: #ff00c8;
-      --yellow: #f5ff00;
-      --green: #00ff85;
-      --bg: #05000d;
-      --panel: rgba(10, 5, 25, 0.82);
+      --black: #050509;
+      --dark-purple: #100018;
+
+      /* Typiske cyberpunk-farger */
+      --cyan: #00f7ff;
+      --pink: #ff00d4;
+      --yellow: #fff200;
+      --green: #00ff66;
+
+      /* 67-fargen */
+      --sixty-seven: #ff0055;
     }
 
+
+    /* =====================================================
+       67 // GRUNNINNSTILLINGER
+       ===================================================== */
+
     * {
+      /* Gjør at padding og border regnes med i elementets størrelse */
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
 
     body {
+      /* Fjerner standard margin fra nettleseren */
       margin: 0;
+
+      /* Avstand rundt innholdet */
+      padding: 30px 15px;
+
+      /* Minste høyde er hele skjermen */
       min-height: 100vh;
-      padding: 40px 20px;
+
+      /* Cyberpunk-bakgrunn */
       background:
-        radial-gradient(circle at 20% 20%, #24104d 0, transparent 30%),
-        radial-gradient(circle at 80% 80%, #3b003d 0, transparent 30%),
-        var(--bg);
-      color: #fff;
-      font-family: 'Orbitron', system-ui, sans-serif;
+        radial-gradient(
+          circle at 20% 20%,
+          #3d003d,
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 80% 80%,
+          #001e3d,
+          transparent 30%
+        ),
+        var(--black);
+
+      /* Font */
+      font-family: "Courier New", monospace;
+
+      /* Hvit tekst */
+      color: white;
+
+      /* Hindrer horisontal scrolling */
       overflow-x: hidden;
     }
 
-    /* Cyberpunk grid */
+
+    /* =====================================================
+       67 // DIGITALT RUTENETT
+       Lager linjer i bakgrunnen som minner om et
+       futuristisk datasystem.
+       ===================================================== */
+
     body::before {
       content: "";
+
+      /* Gjør laget like stort som hele skjermen */
       position: fixed;
       inset: 0;
+
+      /* Gjør at laget ikke blokkerer knapper/lenker */
       pointer-events: none;
+
+      /* Lager horisontale og vertikale linjer */
       background:
-        linear-gradient(rgba(0,246,255,.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,246,255,.07) 1px, transparent 1px);
+        linear-gradient(
+          rgba(255, 0, 85, 0.08) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(0, 247, 255, 0.08) 1px,
+          transparent 1px
+        );
+
+      /* Størrelsen på rutene */
       background-size: 40px 40px;
-      mask-image: linear-gradient(to bottom, black, transparent);
-      z-index: -1;
+
+      /* Ligger bak resten av siden */
+      z-index: -2;
     }
 
-    /* Scanlines */
+
+    /* =====================================================
+       67 // SCANLINES
+       Lager de horisontale TV-/CRT-linjene.
+       ===================================================== */
+
     body::after {
       content: "";
+
       position: fixed;
       inset: 0;
+
+      /* Gjør laget usynlig for musen */
       pointer-events: none;
+
+      /* Små horisontale linjer */
       background: repeating-linear-gradient(
         0deg,
-        rgba(255,255,255,.025) 0px,
-        rgba(255,255,255,.025) 1px,
+        rgba(255,255,255,0.025),
+        rgba(255,255,255,0.025) 1px,
         transparent 1px,
         transparent 4px
       );
-      z-index: 20;
+
+      /* Ligger helt øverst */
+      z-index: 100;
     }
+
+
+    /* =====================================================
+       67 // HOVEDCONTAINER
+       Begrenset bredde gjør siden mer oversiktlig på PC.
+       ===================================================== */
 
     .container {
       width: min(900px, 100%);
       margin: auto;
     }
 
+
+    /* =====================================================
+       67 // TERMINAL-VINDU
+       Dette er selve "datasystemet" rundt innholdet.
+       ===================================================== */
+
     .terminal {
-      border: 1px solid var(--cyan);
-      background: var(--panel);
-      padding: 35px;
-      box-shadow:
-        0 0 15px var(--cyan),
-        inset 0 0 30px rgba(0,246,255,.05);
       position: relative;
-      clip-path: polygon(
-        0 0,
-        calc(100% - 25px) 0,
-        100% 25px,
-        100% 100%,
-        25px 100%,
-        0 calc(100% - 25px)
-      );
+
+      padding: 35px;
+
+      /* Gjennomsiktig mørk bakgrunn */
+      background: rgba(8, 4, 18, 0.9);
+
+      /* Neonrosa kant */
+      border: 2px solid var(--sixty-seven);
+
+      /* Rosa glow */
+      box-shadow:
+        0 0 10px var(--sixty-seven),
+        0 0 35px rgba(255, 0, 85, 0.3),
+        inset 0 0 30px rgba(255, 0, 85, 0.05);
     }
 
-    .terminal::before {
-      content: "SYSTEM // ONLINE // 67";
-      position: absolute;
-      top: -12px;
-      left: 25px;
-      padding: 3px 12px;
-      color: var(--bg);
-      background: var(--cyan);
-      font-size: .65rem;
-      font-weight: 800;
-      box-shadow: 0 0 12px var(--cyan);
-    }
 
-    .status {
-      color: var(--green);
-      font-size: .75rem;
-      letter-spacing: 3px;
+    /* =====================================================
+       67 // TOPPTEKST
+       Liten tekst øverst på terminalen.
+       ===================================================== */
+
+    .top-bar {
+      display: flex;
+
+      /* Plasserer tekst på hver sin side */
+      justify-content: space-between;
+
+      align-items: center;
+
       margin-bottom: 30px;
+
+      color: var(--cyan);
+
+      font-size: 0.75rem;
+
+      letter-spacing: 2px;
     }
+
+
+    /* 67-logoen */
+    .logo {
+      color: var(--yellow);
+
+      font-weight: bold;
+
+      /* Glow rundt 67 */
+      text-shadow:
+        0 0 5px var(--yellow),
+        0 0 15px var(--yellow);
+    }
+
+
+    /* =====================================================
+       67 // HOVEDOVERSKRIFT
+       ===================================================== */
 
     h1 {
-      font-size: clamp(2.5rem, 8vw, 5.5rem);
-      line-height: .9;
-      margin: 0 0 25px;
-      color: #fff;
+      margin: 0;
+
+      /* Stor tekst */
+      font-size: clamp(3rem, 10vw, 7rem);
+
+      line-height: 0.85;
+
+      /* Cyberpunk-farger */
+      color: white;
+
+      /* Flere skygger lager glitch/neon-effekt */
       text-shadow:
-        3px 3px 0 var(--pink),
-        -3px -3px 0 var(--cyan),
-        0 0 30px var(--cyan);
+        4px 4px 0 var(--pink),
+        -4px -4px 0 var(--cyan),
+        0 0 25px var(--cyan);
+
+      /* Kjører glitch-animasjonen */
       animation: glitch 3s infinite;
     }
 
-    h1 em {
+
+    /* "67" under navnet */
+    .sixty-seven {
       display: block;
-      color: var(--yellow);
-      font-style: normal;
-      font-size: .55em;
-      margin-top: 15px;
+
+      margin-top: 25px;
+
+      color: var(--sixty-seven);
+
+      font-size: 0.45em;
+
+      letter-spacing: 15px;
+
+      /* Stor rød/rosa glow */
       text-shadow:
-        0 0 5px var(--yellow),
-        0 0 20px var(--yellow);
+        0 0 5px var(--sixty-seven),
+        0 0 15px var(--sixty-seven),
+        0 0 40px var(--sixty-seven);
     }
 
+
+    /* =====================================================
+       67 // INTRODUKSJON
+       ===================================================== */
+
+    .intro {
+      margin-top: 40px;
+
+      padding: 20px;
+
+      /* Rosa linje på venstre side */
+      border-left: 4px solid var(--pink);
+
+      /* Svak rosa bakgrunn */
+      background: rgba(255, 0, 212, 0.04);
+    }
+
+
     p {
-      color: #c7d5ff;
+      color: #cfd7ff;
+
       line-height: 1.8;
     }
 
-    .intro {
-      border-left: 3px solid var(--pink);
-      padding-left: 18px;
-      margin-bottom: 40px;
+
+    /* =====================================================
+       67 // STATUS
+       ===================================================== */
+
+    .status {
+      color: var(--green);
+
+      font-size: 0.8rem;
+
+      letter-spacing: 3px;
+
+      text-shadow: 0 0 8px var(--green);
     }
+
+
+    /* Blinkende "_" */
+    .cursor {
+      animation: blink 1s steps(2) infinite;
+    }
+
+
+    /* =====================================================
+       67 // OVERSKRIFTER
+       ===================================================== */
 
     h2 {
+      margin-top: 50px;
+
       color: var(--cyan);
-      font-size: 1.1rem;
-      letter-spacing: 4px;
+
+      letter-spacing: 5px;
+
       text-transform: uppercase;
-      margin-top: 45px;
-      text-shadow: 0 0 10px var(--cyan);
+
+      text-shadow:
+        0 0 5px var(--cyan),
+        0 0 15px var(--cyan);
     }
 
+
+    /* Setter "67 //" foran hver overskrift */
     h2::before {
-      content: ">> ";
+      content: "67 // ";
+
       color: var(--pink);
     }
 
+
+    /* =====================================================
+       67 // PROSJEKTER
+       ===================================================== */
+
     ul {
+      /* Fjerner standard punktliste */
       list-style: none;
+
       padding: 0;
+
       display: grid;
+
       gap: 15px;
     }
 
+
     li {
-      background: rgba(255, 0, 200, .06);
-      border: 1px solid rgba(255, 0, 200, .5);
       padding: 20px;
-      transition: .25s;
-      position: relative;
-    }
 
-    li:hover {
-      transform: translateX(8px);
-      border-color: var(--cyan);
+      /* Mørkt cyberpunk-panel */
+      background: rgba(0, 0, 0, 0.5);
+
+      /* Cyan kant */
+      border: 1px solid var(--cyan);
+
+      /* Litt glow */
       box-shadow:
-        0 0 15px rgba(0,246,255,.5),
-        inset 0 0 15px rgba(0,246,255,.08);
+        0 0 8px rgba(0, 247, 255, 0.2);
+
+      transition: 0.25s;
     }
 
+
+    /* Når musen beveger seg over et prosjekt */
+    li:hover {
+      transform: translateX(10px);
+
+      border-color: var(--yellow);
+
+      box-shadow:
+        0 0 20px rgba(255, 242, 0, 0.5);
+    }
+
+
+    /* 67 foran hvert prosjekt */
     li::before {
-      content: "67";
+      content: "[67] ";
+
       color: var(--yellow);
-      margin-right: 15px;
-      font-weight: 800;
+
+      font-weight: bold;
+
       text-shadow: 0 0 8px var(--yellow);
     }
 
+
+    /* =====================================================
+       67 // LENKER
+       ===================================================== */
+
     a {
       color: var(--cyan);
+
+      font-weight: bold;
+
       text-decoration: none;
-      font-weight: 800;
+
       border-bottom: 1px solid var(--cyan);
     }
 
+
+    /* Effekt når man holder musen over en lenke */
     a:hover {
       color: var(--pink);
+
       border-color: var(--pink);
+
       text-shadow: 0 0 10px var(--pink);
     }
 
+
+    /* =====================================================
+       67 // KONTAKT
+       ===================================================== */
+
+    .contact {
+      padding: 25px;
+
+      margin-top: 20px;
+
+      border: 1px dashed var(--green);
+
+      background: rgba(0, 255, 102, 0.03);
+    }
+
+
+    /* E-postadresse som terminaltekst */
     code {
       display: inline-block;
+
       padding: 12px 18px;
+
       color: var(--green);
-      background: #020508;
+
+      background: #020505;
+
       border: 1px solid var(--green);
-      border-radius: 0;
-      box-shadow: 0 0 12px rgba(0,255,133,.3);
+
+      box-shadow:
+        0 0 15px rgba(0, 255, 102, 0.3);
+
       font-family: monospace;
     }
 
-    .contact {
-      margin-top: 35px;
-      padding-top: 25px;
-      border-top: 1px dashed rgba(0,246,255,.5);
-    }
 
-    .footer {
-      margin-top: 30px;
+    /* =====================================================
+       67 // FOOTER
+       ===================================================== */
+
+    footer {
+      margin-top: 40px;
+
       text-align: center;
-      color: #667;
-      font-size: .65rem;
-      letter-spacing: 3px;
+
+      color: #555;
+
+      font-size: 0.65rem;
+
+      letter-spacing: 4px;
     }
 
-    .blink {
-      animation: blink 1s steps(2, start) infinite;
-    }
 
-    @keyframes blink {
-      50% { opacity: 0; }
-    }
+    /* =====================================================
+       67 // GLITCH-ANIMASJON
+       Flytter overskriften litt frem og tilbake.
+       ===================================================== */
 
     @keyframes glitch {
+
       0%, 90%, 100% {
         transform: translate(0);
       }
+
       92% {
-        transform: translate(-3px, 2px);
+        transform: translate(-4px, 2px);
       }
+
       94% {
-        transform: translate(3px, -2px);
+        transform: translate(4px, -2px);
       }
+
       96% {
         transform: translate(-2px, 0);
       }
     }
 
+
+    /* =====================================================
+       67 // BLINKING CURSOR
+       ===================================================== */
+
+    @keyframes blink {
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+
+    /* =====================================================
+       67 // MOBIL
+       Gjør terminalen mindre på små skjermer.
+       ===================================================== */
+
     @media (max-width: 600px) {
+
       body {
-        padding: 20px 10px;
+        padding: 15px 8px;
       }
 
       .terminal {
-        padding: 25px 20px;
+        padding: 25px 18px;
+      }
+
+      .top-bar {
+        font-size: 0.6rem;
+      }
+
+      h1 {
+        font-size: 3.5rem;
+      }
+
+      .sixty-seven {
+        letter-spacing: 8px;
       }
     }
+
   </style>
 </head>
 
+
 <body>
 
+  <!-- =====================================================
+       67 // SELVE NETTSIDEN
+       Alt som brukeren faktisk ser ligger her.
+       ===================================================== -->
+
   <main class="container">
+
     <section class="terminal">
 
-      <div class="status">
-        ● CONNECTION ESTABLISHED <span class="blink">_</span>
+      <!-- Toppmeny/status -->
+      <div class="top-bar">
+
+        <span class="logo">
+          67.exe
+        </span>
+
+        <span class="status">
+          ● SYSTEM ONLINE
+        </span>
+
       </div>
 
+
+      <!-- =================================================
+           HOVEDOVERSKRIFT
+           ================================================= -->
+
       <h1>
-        HEI,
-        <em>OUUU SHIII // 67</em>
+
+        OUUU
+        SHIII
+
+        <!-- Stor 67-logo -->
+        <span class="sixty-seven">
+          67 // 67 // 67
+        </span>
+
       </h1>
 
+
+      <!-- Intro -->
       <div class="intro">
+
+        <p class="status">
+          &gt; CONNECTION_ESTABLISHED<span class="cursor">_</span>
+        </p>
+
         <p>
-          Velkommen til min digitale sektor.
-          Dette er min første nettside publisert gjennom
+          Hei, jeg heter <strong>OUUU SHIII</strong>.
+          Du har nettopp koblet deg til min digitale
+          verden.
+        </p>
+
+        <p>
+          Dette er min første nettside publisert med
           <strong>GitHub Pages</strong>.
         </p>
 
-        <p>
-          <span style="color:#ff00c8">[STATUS]</span>
-          SYSTEM ONLINE — NIGHT CITY PROTOCOL ACTIVE
+        <!-- Ekstra 67-melding -->
+        <p style="color:#ff0055;">
+          [67] SIGNAL DETECTED // [67] SIGNAL DETECTED
         </p>
+
       </div>
+
+
+      <!-- =================================================
+           PROSJEKTER
+           ================================================= -->
 
       <h2>Prosjekter</h2>
 
       <ul>
-        <li>
-          PROSJEKT_01 —
-          <a href="#">ÅPNE DATA</a>
-        </li>
 
         <li>
-          PROSJEKT_02 —
-          <a href="#">ÅPNE DATA</a>
+          <strong>PROSJEKT_01</strong>
+
+          —
+          
+          <a href="#">
+            ÅPNE PROSJEKT
+          </a>
         </li>
+
+
+        <li>
+          <strong>PROSJEKT_02</strong>
+
+          —
+
+          <a href="#">
+            ÅPNE PROSJEKT
+          </a>
+        </li>
+
+
+        <li>
+          <strong>PROJECT_67</strong>
+
+          —
+
+          <a href="#">
+            ENTER 67
+          </a>
+        </li>
+
       </ul>
+
+
+      <!-- =================================================
+           KONTAKT
+           ================================================= -->
 
       <h2>Kontakt</h2>
 
       <div class="contact">
+
         <p>
-          SEND TRANSMISSION →
+          &gt; SEND DIGITAL TRANSMISSION:
         </p>
 
-        <code>epost@eksempel.no</code>
+        <code>
+          epost@eksempel.no
+        </code>
+
+        <p style="color:#fff200;">
+          STATUS: 67% ONLINE
+        </p>
+
       </div>
 
-      <div class="footer">
-        // 67 // CYBERNETIC PORTFOLIO // END OF TRANSMISSION //
-      </div>
+
+      <!-- =================================================
+           FOOTER
+           ================================================= -->
+
+      <footer>
+
+        // 67 // 67 // 67 //
+        <br>
+        OUUU SHIII DIGITAL NETWORK
+        <br>
+        END OF TRANSMISSION
+
+      </footer>
 
     </section>
+
   </main>
 
 </body>
+
 </html>
